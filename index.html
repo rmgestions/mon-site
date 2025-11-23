@@ -3,15 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demande de devis – RM GestioNS</title>
-</head>
-<body>
-    <h1>Demande de devis</h1>
-    <p>Merci de remplir le formulaire ci-dessous. Je reviens vers vous très rapidement.</p>
+    <title>RM GestioNS — Secrétariat à distance</title>
 
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVQq4-bcSE2AlkotIpGfr3KwpDjgXTi-zzXFjTwmAIULpp1A/viewform?embedded=true"
-        width="100%" height="1800" frameborder="0" marginheight="0" marginwidth="0">
-        Chargement…
-    </iframe>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fdf7f7;
+            color: #333;
+        }
+
+        /* MENU */
+        nav {
+            background-color: #e8c9c9;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+        }
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* TITRES */
+        h1, h2 {
+            text-align: center;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        /* BOUTONS */
+        .btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background-color: #d4a5a5;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #c68d8d;
+        }
+
+        /* FORMULAIRE GOOGLE */
+        iframe {
+            width: 100%;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <nav>
+        <div>RM GestioNS</div>
+        <div>
+            <a href="#services">Services</a>
+            <a href="#tarifs">Tarifs</a>
+            <a href="#devis">Demande de devis</a>
+        </div>
+    </nav>
+
+    <!-- ACCUEIL -->
+    <section id="accueil">
+        <h1>Bienvenue chez RM GestioNS</h1>
+        <p style="text-align:center;">
+            Secrétariat indépendant – administratif, gestion, rédaction, support...
+        </p>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <h2>Prestations proposées</h2>
+        <ul>
+            <li>Gestion administrative</li>
+            <li>Saisie, mise en page, rédaction</li>
+            <li>Suivi clients / fournisseurs</li>
+            <li>Classement, archivage</li>
+            <li>Préparation comptable</li>
+            <li>Support indépendant ou remplacement temporaire</li>
+        </ul>
+    </section>
+
+    <!-- TARIFS -->
+    <section id="tarifs">
+        <h2>Tarifs</h2>
+        <p>Tarification sur mesure selon vos besoins. Contactez-moi pour un devis gratuit.</p>
+    </section>
+
+    <!-- FORMULAIRE DEVIS -->
+    <section id="devis">
+        <h2>Demande de devis</h2>
+        <p>Merci de remplir le formulaire ci-dessous. Je reviens vers vous très rapidement.</p>
+
+        <iframe 
+            src="https://docs.google.com/forms/d/e/1FAIpQLSdVQq4-bcSE2AlkotIpGfr3KwpDjgXTi-zzXFjTwmAIULpp1A/viewform?embedded=true" 
+            height="1800">
+            Chargement…
+        </iframe>
+    </section>
+
 </body>
 </html>
