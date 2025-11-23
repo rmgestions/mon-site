@@ -1,120 +1,277 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RM GestioNS — Secrétariat à distance</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RM GestioNS — Secrétariat à distance</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #fdf7f7;
-            color: #333;
-        }
+  <!-- Fonts: Playfair Display for headings (logo-like) + Inter for text -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-        /* MENU */
-        nav {
-            background-color: #e8c9c9;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-        }
-        nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
+  <style>
+    :root{
+      --bg: #fbf7f4;          /* very light beige (page background) */
+      --paper: #ffffff;       /* white for cards */
+      --text: #111111;        /* primary text */
+      --muted: #6f716b;       /* muted/olive accent (lines in logo) */
+      --accent: #8a8f86;      /* button / small accents */
+      --shadow: 0 12px 30px rgba(15,15,15,0.08);
+      --radius: 12px;
+      --maxw: 1100px;
+    }
 
-        /* TITRES */
-        h1, h2 {
-            text-align: center;
-        }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
 
-        /* SECTIONS */
-        section {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: auto;
-        }
+    /* HEADER / NAV */
+    header {
+      position:sticky;
+      top:0;
+      z-index:40;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .nav{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 20px;
+      gap:12px;
+    }
 
-        /* BOUTONS */
-        .btn {
-            display: inline-block;
-            padding: 10px 18px;
-            background-color: #d4a5a5;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 16px;
-            margin-top: 20px;
-        }
-        .btn:hover {
-            background-color: #c68d8d;
-        }
+    /* logo container */
+    .logo-wrap{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo {
+      height:56px;
+      width:auto;
+      border-radius:14px;
+      box-shadow: var(--shadow);
+      transform: translateY(0);
+      transition: transform .25s ease, box-shadow .25s ease;
+      background: var(--paper);
+      padding:10px;
+    }
+    .logo:hover{ transform: translateY(-3px); box-shadow: 0 18px 40px rgba(15,15,15,0.12); }
 
-        /* FORMULAIRE GOOGLE */
-        iframe {
-            width: 100%;
-            border: none;
-        }
-    </style>
+    /* brand text is optional */
+    .brand {
+      font-family: "Playfair Display", serif;
+      font-weight:700;
+      letter-spacing:0.02em;
+      font-size:20px;
+    }
+    nav a{
+      color:var(--text);
+      text-decoration:none;
+      margin-left:18px;
+      font-weight:600;
+    }
+
+    /* HERO */
+    .hero{
+      max-width: var(--maxw);
+      margin:40px auto 10px;
+      padding: 28px 20px;
+      display:flex;
+      align-items:center;
+      gap:30px;
+      justify-content:space-between;
+    }
+    .hero-left{
+      flex:1 1 480px;
+    }
+    .eyebrow{
+      color:var(--muted);
+      font-size:13px;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      margin-bottom:10px;
+    }
+    .title{
+      font-family:"Playfair Display", serif;
+      font-size:40px;
+      margin:0 0 14px 0;
+      line-height:1.02;
+    }
+    .lead{
+      color: #404040;
+      max-width:720px;
+      margin-bottom:20px;
+      font-size:16px;
+    }
+    .cta{
+      display:inline-block;
+      background:var(--accent);
+      color:white;
+      padding:10px 18px;
+      border-radius:10px;
+      text-decoration:none;
+      box-shadow:0 8px 20px rgba(138,143,134,0.18);
+      font-weight:600;
+    }
+
+    /* CARD / SERVICES */
+    .grid{
+      max-width: var(--maxw);
+      margin: 18px auto;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+      padding: 0 20px 40px;
+    }
+    .card{
+      background:var(--paper);
+      padding:18px;
+      border-radius:12px;
+      box-shadow: var(--shadow);
+    }
+    .card h3{
+      margin:0 0 10px 0;
+      font-family:"Playfair Display", serif;
+      font-size:18px;
+    }
+    .card p{ margin:0; color:#4b4b4b; font-size:15px; }
+
+    /* FORM SECTION */
+    .form-section{
+      max-width: var(--maxw);
+      margin: 30px auto 80px;
+      padding: 22px 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.95));
+      border-radius:14px;
+      box-shadow: var(--shadow);
+    }
+    .form-head{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      margin-bottom:12px;
+    }
+    .form-head h2{
+      margin:0;
+      font-family:"Playfair Display", serif;
+    }
+
+    iframe { width:100%; border: none; border-radius:10px; }
+
+    /* footer */
+    footer{
+      margin-top:40px;
+      padding:28px 20px;
+      text-align:center;
+      color: #666;
+      font-size:14px;
+    }
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+      .hero{ flex-direction:column; align-items:flex-start; }
+      .logo{ height:48px; }
+    }
+    @media (max-width:680px){
+      .grid{ grid-template-columns: 1fr; }
+      .title{ font-size:30px; }
+      .logo{ height:42px; padding:8px; }
+      nav a{ font-size:14px; margin-left:12px; }
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- MENU -->
-    <nav>
-        <div>RM GestioNS</div>
-        <div>
-            <a href="#services">Services</a>
-            <a href="#tarifs">Tarifs</a>
-            <a href="#devis">Demande de devis</a>
+  <!-- HEADER -->
+  <header>
+    <div class="nav">
+      <div class="logo-wrap">
+        <!-- Keep the same path you used when uploading the logo -->
+        <img src="/mnt/data/LOGO RM GESTIONS.png" alt="RM GestioNS" class="logo">
+        <div class="brand" aria-hidden="true">RM GestioNS</div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a href="#services">Services</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#devis">Demande de devis</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO / ACCROCHE -->
+  <section class="hero" id="accueil">
+    <div class="hero-left">
+      <div class="eyebrow">Secrétariat à distance pour TPE / PME</div>
+      <h1 class="title">Service réactif, fiable et adapté aux petites entreprises</h1>
+      <p class="lead">Assistance administrative complète : rédaction, mise en page, préparation de dossiers d'appels d'offres, gestion d'agenda et suivi des clients. Tarifs transparents et devis sur mesure.</p>
+
+      <a class="cta" href="#devis">Demander un devis</a>
+    </div>
+
+    <!-- small visual / decorative column -->
+    <div style="flex:0 0 240px; display:flex; align-items:center; justify-content:center;">
+      <!-- subtle decorative block matching logo lines -->
+      <div style="width:160px; height:160px; border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,250,250,0.9)); display:flex; align-items:center; justify-content:center; box-shadow: var(--shadow);">
+        <div style="width:80%; text-align:center;">
+          <img src="/mnt/data/LOGO RM GESTIONS.png" alt="logo" style="width:100%; height:auto; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.08)); border-radius:8px;">
         </div>
-    </nav>
+      </div>
+    </div>
+  </section>
 
-    <!-- ACCUEIL -->
-    <section id="accueil">
-        <h1>Bienvenue chez RM GestioNS</h1>
-        <p style="text-align:center;">
-            Secrétariat indépendant – administratif, gestion, rédaction, support...
-        </p>
-    </section>
+  <!-- SERVICES -->
+  <div class="grid" id="services">
+    <div class="card">
+      <h3>Mise en page & rédaction</h3>
+      <p>Rédaction, mise en page professionnelle et adaptation des documents à votre charte.</p>
+    </div>
+    <div class="card">
+      <h3>Préparation AO</h3>
+      <p>Préparation complète des dossiers d'appels d'offres, vérification de conformité et envoi.</p>
+    </div>
+    <div class="card">
+      <h3>Support administratif</h3>
+      <p>Gestion d'agenda, relances clients, facturation et organisation des dossiers.</p>
+    </div>
+  </div>
 
-    <!-- SERVICES -->
-    <section id="services">
-        <h2>Prestations proposées</h2>
-        <ul>
-            <li>Gestion administrative</li>
-            <li>Saisie, mise en page, rédaction</li>
-            <li>Suivi clients / fournisseurs</li>
-            <li>Classement, archivage</li>
-            <li>Préparation comptable</li>
-            <li>Support indépendant ou remplacement temporaire</li>
-        </ul>
-    </section>
+  <!-- TARIFS (simple) -->
+  <section style="max-width:var(--maxw); margin: 20px auto; padding:0 20px;" id="tarifs">
+    <div class="card" style="border-radius:12px;">
+      <h3 style="font-family:'Playfair Display', serif;">Tarifs indicatifs</h3>
+      <p>Tarif horaire : 50 € / heure (révisions selon la complexité). Forfaits sur demande — devis gratuit.</p>
+    </div>
+  </section>
 
-    <!-- TARIFS -->
-    <section id="tarifs">
-        <h2>Tarifs</h2>
-        <p>Tarification sur mesure selon vos besoins. Contactez-moi pour un devis gratuit.</p>
-    </section>
+  <!-- FORMULAIRE -->
+  <section class="form-section" id="devis">
+    <div class="form-head">
+      <h2>Demande de devis</h2>
+    </div>
 
-    <!-- FORMULAIRE DEVIS -->
-    <section id="devis">
-        <h2>Demande de devis</h2>
-        <p>Merci de remplir le formulaire ci-dessous. Je reviens vers vous très rapidement.</p>
+    <!-- Google Forms intégré (si besoin changez l'URL ci-dessous) -->
+    <iframe height="1500" src="https://docs.google.com/forms/d/e/1FAIpQLSdVQq4-bcSE2AlkotIpGfr3KwpDjgXTi-zzXFjTwmAIULpp1A/viewform?embedded=true">
+      Chargement…
+    </iframe>
+  </section>
 
-        <iframe 
-            src="https://docs.google.com/forms/d/e/1FAIpQLSdVQq4-bcSE2AlkotIpGfr3KwpDjgXTi-zzXFjTwmAIULpp1A/viewform?embedded=true" 
-            height="1800">
-            Chargement…
-        </iframe>
-    </section>
+  <footer>
+    © <strong>RM GestioNS</strong> — Secrétariat à distance • Email : rmg.gestions@gmail.com • Tél : 07 49 59 63 77
+  </footer>
 
 </body>
 </html>
